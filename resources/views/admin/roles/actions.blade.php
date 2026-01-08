@@ -8,6 +8,5 @@
         <x-wire-button type="submit" red xs>
             <i class="fa-solid fa-trash"></i>
         </x-wire-button>
-
     </form>
 </div>

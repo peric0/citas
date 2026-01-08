@@ -41,6 +41,12 @@
 
         <div class="mt-14 flex items-center">
             @include('layouts.includes.admin.breadcrumb')
+
+            @isset($action)
+                <div class="ml-auto">
+                    {{ $action }}
+                </div>
+            @endisset
         </div>
 
         {{ $slot }}

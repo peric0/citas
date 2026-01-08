@@ -8,9 +8,6 @@
     ],
 ]">
 
-@slot('title')
-    Page title
-@endslot
     <x-slot name="action">
         <x-wire-button blue href="{{ route('admin.roles.create') }}">
             <i class="fa-solid fa-plus"></i>

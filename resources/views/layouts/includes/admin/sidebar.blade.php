@@ -10,14 +10,11 @@
             'header' => 'Gestión',
         ],
         [
-            'header' => 'Administrar pagina',
-        ],
-        [
             'name' => 'Roles y permisos',
             'icon' => 'fa-solid fa-shield-halved',
             'href' => route('admin.roles.index'),
-            'active' => request()->routeIs('admin.roles.*')
-],
+            'active' => request()->routeIs('admin.roles.*'),
+        ],
         [
             'name' => 'Sub menu',
             'icon' => 'fa-solid fa-gauge',
@@ -72,7 +69,7 @@
                                 @foreach ($link['submenu'] as $item)
                                     <li>
                                         <a href="{{ $item['href'] }}"
-                                            class="pl-10 flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">{{ $item['name']}}</a>
+                                            class="pl-10 flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">{{ $item['name'] }}</a>
                                     </li>
                                 @endforeach
                             </ul>
