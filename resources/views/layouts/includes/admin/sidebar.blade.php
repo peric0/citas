@@ -7,8 +7,17 @@
             'active' => request()->routeIs('admin.dashboard'),
         ],
         [
+            'header' => 'Gestión',
+        ],
+        [
             'header' => 'Administrar pagina',
         ],
+        [
+            'name' => 'Roles y permisos',
+            'icon' => 'fa-solid fa-shield-halved',
+            'href' => route('admin.roles.index'),
+            'active' => request()->routeIs('admin.roles.*')
+],
         [
             'name' => 'Sub menu',
             'icon' => 'fa-solid fa-gauge',
