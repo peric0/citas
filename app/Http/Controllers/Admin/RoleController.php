@@ -4,7 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Laravel\Jetstream\Role;
+#use Laravel\Jetstream\Role;
+
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Session;
+
+#use function Pest\Laravel\session;
+
 
 class RoleController extends Controller
 {
@@ -29,7 +35,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:roles,name',
+        ]);
+
+        Role::create(['name' => $request->name]);
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Rol creado correctamente',
+            'text' => 'El rol fue creado correctamenbte'
+        ]);
+
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -45,7 +63,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('admin.roles.edit', compact('role', $role));
+        return view('admin.roles.edit', compact('role'));
     }
 
     /**
