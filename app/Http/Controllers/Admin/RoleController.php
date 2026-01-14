@@ -44,7 +44,7 @@ class RoleController extends Controller
         session()->flash('swal', [
             'icon' => 'success',
             'title' => 'Rol creado correctamente',
-            'text' => 'El rol fue creado correctamenbte'
+            'text' => 'El rol fue creado correctamente'
         ]);
 
         return redirect()->route('admin.roles.index');
@@ -63,6 +63,16 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        if ($role->id <= 4) {
+            session()->flash('swal', [
+                'icon' => 'error',
+                'title' => 'Error',
+                'text' => 'No se puede editar este rol'
+            ]);
+
+            return redirect()->route('admin.roles.index');
+        }
+
         return view('admin.roles.edit', compact('role'));
     }
 
@@ -71,7 +81,19 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:roles,name,' . $role->id,
+        ]);
+
+        $role->update(['name' => $request->name]);
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Rol actualizado correctamente',
+            'text' => 'El rol fue actualizado correctamente'
+        ]);
+
+        return redirect()->route('admin.roles.edit', $role);
     }
 
     /**
@@ -79,6 +101,24 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        return view('admin.roles.index');
+        if ($role->id <= 4) {
+            session()->flash('swal', [
+                'icon' => 'error',
+                'title' => 'Error',
+                'text' => 'No se puede eliminar este rol'
+            ]);
+
+            return redirect()->route('admin.roles.index');
+        }
+
+        $role->delete();
+
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => 'Rol eliminado correctamente',
+            'text' => 'El rol fue eliminado correctamente'
+        ]);
+
+        return redirect()->route('admin.roles.index');
     }
 }
