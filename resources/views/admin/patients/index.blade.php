@@ -8,4 +8,7 @@
     ],
 ]">
 
+
+ @livewire('admin.datatables.patient-table')
+
 </x-admin-layout>

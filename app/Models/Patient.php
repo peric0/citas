@@ -8,7 +8,7 @@ class Patient extends Model
 {
         protected $fillable = [
         'user_id',
-        'bloodtype_id',
+        'blood_type_id',
         'allergies',
         'chronics_conditions',
         'surgical_history',
